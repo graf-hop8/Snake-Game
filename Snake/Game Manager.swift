@@ -12,7 +12,7 @@ class GameManager {
     
         
     var scene: GameScene!
-    //1
+
     var nextTime: Double?
     var timeExtension: Double = 0.1
     
@@ -25,7 +25,7 @@ class GameManager {
         self.scene = scene
         }
     
-    //1
+
     func initGame() {
         //starting player position
         scene.playerPositions.append((10, 10))
@@ -55,12 +55,12 @@ class GameManager {
         scene.scorePos = CGPoint(x: randomX, y: randomY)
         
         while contains(a: scene.playerPositions, v: (Int(randomX), Int(randomY))) {
-            randomX = CGFloat(arc4random_uniform(19))
-            randomY = CGFloat(arc4random_uniform(39))
+            randomX = CGFloat(arc4random_uniform(25))
+            randomY = CGFloat(arc4random_uniform(45))
         }
         scene.scorePos = CGPoint(x: randomX, y: randomY)
     }
-    //2
+
     func update(time: Double) {
         if nextTime == nil {
             nextTime = time + timeExtension
@@ -132,7 +132,6 @@ class GameManager {
             }
         }
     }
-    //2
     func renderChange() {
         for (node, x, y) in scene.gameArray {
             if contains(a: scene.playerPositions, v: (x,y)) {
@@ -148,18 +147,15 @@ class GameManager {
             }
         }
     }
-    //3
     func contains(a:[(Int, Int)], v:(Int,Int)) -> Bool {
         let (c1, c2) = v
         for (v1, v2) in a { if v1 == c1 && v2 == c2 { return true } }
         return false
     }
-    //3
     private func updatePlayerPosition() {
-        //4
         var xChange = -1
         var yChange = 0
-        //5
+        
         switch playerDirection {
         case 1:
             //left
@@ -189,7 +185,7 @@ class GameManager {
         default:
             break
         }
-        //6
+        
         if scene.playerPositions.count > 0 {
             var start = scene.playerPositions.count - 1
             while start > 0 {
